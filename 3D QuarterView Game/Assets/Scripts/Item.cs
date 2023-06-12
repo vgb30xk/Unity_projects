@@ -27,7 +27,6 @@ public class Item : MonoBehaviour
         if (other.gameObject.tag == "Floor")
         {
             rigid.isKinematic = true;
-            sphereCollider.enabled = false;
         }
     }
 }
