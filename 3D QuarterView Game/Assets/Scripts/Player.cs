@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public int ammo;
     public int coin;
     public int health;
+    public int score;
 
     public int maxAmmo;
     public int maxCoin;
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
     bool isFireReady = true;
     bool isBorder;
     bool isDamage;
+    bool isShop;
 
     Vector3 moveVec;
     Vector3 dodgeVec;
@@ -50,7 +52,7 @@ public class Player : MonoBehaviour
     MeshRenderer[] meshs;
 
     GameObject nearObject;
-    Weapon equipWeapon;
+    public Weapon equipWeapon;
     int equipWeaponIndex = -1;
     float fireDelay;
 
@@ -59,6 +61,9 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
         meshs = GetComponentsInChildren<MeshRenderer>();
+
+        Debug.Log(PlayerPrefs.GetInt("MaxScore"));
+        // PlayerPrefs.SetInt("MaxScore", 112500);
     }
 
     void Update()
@@ -82,8 +87,8 @@ public class Player : MonoBehaviour
         wDwon = Input.GetButton("Walk");
         jDwon = Input.GetButtonDown("Jump");
         fDwon = Input.GetButton("Fire1");
-        gDwon = Input.GetButton("Fire2");
-        rDown = Input.GetButton("Reload");
+        gDwon = Input.GetButtonDown("Fire2");
+        rDown = Input.GetButtonDown("Reload");
         iDown = Input.GetButtonDown("Interation");
         sDown1 = Input.GetButtonDown("Swap1");
         sDown2 = Input.GetButtonDown("Swap2");
@@ -126,7 +131,7 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        if (jDwon && moveVec == Vector3.zero && !isJump && !isDodge && !isSwap)
+        if (jDwon && moveVec == Vector3.zero && !isJump && !isDodge && !isSwap && !isShop)
         {
             rigid.AddForce(Vector3.up * 15, ForceMode.Impulse);
             anim.SetBool("isJump", true);
@@ -140,7 +145,7 @@ public class Player : MonoBehaviour
         if (hasGrenades == 0)
             return;
 
-        if (gDwon && !isReload && !isSwap)
+        if (gDwon && !isReload && !isSwap && !isShop)
         {
             Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit rayHit;
@@ -168,7 +173,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < fireDelay;
 
-        if (fDwon && isFireReady && !isDodge && !isSwap)
+        if (fDwon && isFireReady && !isDodge && !isSwap && !isShop)
         {
             equipWeapon.Use();
             anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doShot");
@@ -187,7 +192,7 @@ public class Player : MonoBehaviour
         if (ammo == 0)
             return;
 
-        if (rDown && !isJump && !isDodge && !isSwap && isFireReady && !isReload)
+        if (rDown && !isJump && !isDodge && !isSwap && isFireReady && !isReload && !isShop)
         {
             anim.SetTrigger("doReload");
             isReload = true;
@@ -207,7 +212,7 @@ public class Player : MonoBehaviour
 
     void Dodge()
     {
-        if (jDwon && moveVec != Vector3.zero && !isJump && !isDodge && !isSwap)
+        if (jDwon && moveVec != Vector3.zero && !isJump && !isDodge && !isSwap && !isShop)
         {
             dodgeVec = moveVec;
             speed *= 2;
@@ -271,6 +276,12 @@ public class Player : MonoBehaviour
                 hasWeapon[weaponIndex] = true;
 
                 Destroy(nearObject);
+            }
+            else if (nearObject.tag == "Shop")
+            {
+                Shop shop = nearObject.GetComponent<Shop>();
+                shop.Enter(this);
+                isShop = true;
             }
         }
     }
@@ -374,7 +385,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Weapon")
+        if (other.gameObject.tag == "Weapon" || other.gameObject.tag == "Shop")
             nearObject = other.gameObject;
     }
 
@@ -382,6 +393,13 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Weapon")
             nearObject = null;
+        else if (other.gameObject.tag == "Shop")
+        {
+            Shop shop = nearObject.GetComponent<Shop>();
+            shop.Exit();
+            isShop = false;
+            nearObject = null;
+        }
     }
 }
 
