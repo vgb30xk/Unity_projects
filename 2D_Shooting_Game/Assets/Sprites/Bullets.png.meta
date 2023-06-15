@@ -1,16 +1,28 @@
 fileFormatVersion: 2
-guid: b9889a1e8a548d844b46bee7287797f8
+guid: 5547e92425a5b584ba72bba3566474f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8461514266414155272
-    second: Top
+      213: 874343242196921964
+    second: Player Bullet 1
   - first:
-      213: 656988019031298925
-    second: Middle
+      213: -7976837497307082302
+    second: Player Bullet 1
   - first:
-      213: -7810250789829366425
-    second: Bottom
+      213: -7803065417098437583
+    second: Follower Bullet
+  - first:
+      213: 7431529995326980795
+    second: Enemy Bullet 0
+  - first:
+      213: -7779215486825634471
+    second: Enemy Bullet 1
+  - first:
+      213: 830317617348258784
+    second: Enemy Bullet 2
+  - first:
+      213: 6112890488319390909
+    second: Enemy Bullet 3
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -47,7 +59,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 0
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -71,12 +83,12 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -138,64 +150,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Top
+      name: Bullets_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 143.66667
-        height: 288
+        x: 3
+        y: 5
+        width: 4
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f9fb701b99a29a80800000000000000
-      internalID: -8461514266414155272
+      spriteID: 0f5b45aeda5480a45988fe477fa36a93
+      internalID: -1369655797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Middle
+      name: Bullets_1
       rect:
         serializedVersion: 2
-        x: 145
-        y: 0
-        width: 144
-        height: 288
+        x: 12
+        y: 1
+        width: 8
+        height: 11
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d635c085f171e1900800000000000000
-      internalID: 656988019031298925
+      spriteID: e3c92b6eda5fdc94e89dd68b271bc93a
+      internalID: 1615139839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bottom
+      name: Bullets_2
       rect:
         serializedVersion: 2
-        x: 290
+        x: 25
         y: 0
-        width: 144
-        height: 288
+        width: 4
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76da181894a6c9390800000000000000
-      internalID: -7810250789829366425
+      spriteID: 6d1ef5fef4ffbc542a11f371438e40d1
+      internalID: 18468551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bullets_3
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 3
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c5563033c9a134085aa3698d304098
+      internalID: 1696328371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bullets_4
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 4
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fabae299b5711ef4ea5caf3dbf740b03
+      internalID: 1731611397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bullets_5
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 4
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d57a641399e20f40a4304040dc2043e
+      internalID: 1648532450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bullets_6
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 2
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00722e130f94f7147afde5b5f60b6455
+      internalID: -131356860
       vertices: []
       indices: 
       edges: []
@@ -203,7 +299,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9ce00d5a0b8ba514d8f406aa7f94281e
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -211,9 +307,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bottom: -7810250789829366425
-      Middle: 656988019031298925
-      Top: -8461514266414155272
+      Bullets_0: -1369655797
+      Bullets_1: 1615139839
+      Bullets_2: 18468551
+      Bullets_3: 1696328371
+      Bullets_4: 1731611397
+      Bullets_5: 1648532450
+      Bullets_6: -131356860
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

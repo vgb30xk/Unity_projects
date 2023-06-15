@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Border
+  - BorderBullet
+  - Enemy
+  - PlayerBullet
+  - EnemyBullet
+  - Item
   layers:
   - Default
   - TransparentFX
