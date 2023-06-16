@@ -8,16 +8,38 @@ public class Follower : MonoBehaviour
     public float curShotDelay;
     public ObjectManager objectManager;
 
+    public Vector3 followPos;
+    public int followDelay;
+    public Transform parent;
+    public Queue<Vector3> parentPos;
+
+    void Awake()
+    {
+        parentPos = new Queue<Vector3>();
+    }
+
     void Update()
     {
+        Watch();
         Follow();
         Fire();
         Reload();
     }
 
+    void Watch()
+    {
+        if (!parentPos.Contains(parent.position))
+            parentPos.Enqueue(parent.position);
+
+        if (parentPos.Count > followDelay)
+            followPos = parentPos.Dequeue();
+        else if (parentPos.Count < followDelay)
+            followPos = parent.position;
+    }
+
     void Follow()
     {
-
+        transform.position = followPos;
     }
 
     void Fire()
