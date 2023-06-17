@@ -18,6 +18,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject bulletFollowerPrefabs;
     public GameObject bulletBossAPrefabs;
     public GameObject bulletBossBPrefabs;
+    public GameObject explosionPrefabs;
 
     GameObject[] enemyB;
     GameObject[] enemyL;
@@ -35,6 +36,7 @@ public class ObjectManager : MonoBehaviour
     GameObject[] bulletFollower;
     GameObject[] bulletBossA;
     GameObject[] bulletBossB;
+    GameObject[] explosion;
 
     GameObject[] targetPool;
 
@@ -56,6 +58,7 @@ public class ObjectManager : MonoBehaviour
         bulletFollower = new GameObject[100];
         bulletBossA = new GameObject[50];
         bulletBossB = new GameObject[1000];
+        explosion = new GameObject[20];
 
         Generate();
     }
@@ -76,6 +79,7 @@ public class ObjectManager : MonoBehaviour
         GenerateSystem(bulletFollower, bulletFollowerPrefabs);
         GenerateSystem(bulletBossA, bulletBossAPrefabs);
         GenerateSystem(bulletBossB, bulletBossBPrefabs);
+        GenerateSystem(explosion, explosionPrefabs);
     }
 
     void GenerateSystem(GameObject[] A, GameObject AP)
@@ -132,6 +136,9 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "BulletBossB":
                 targetPool = bulletBossB;
+                break;
+            case "Explosion":
+                targetPool = explosion;
                 break;
         }
 
@@ -193,6 +200,10 @@ public class ObjectManager : MonoBehaviour
             case "BulletBossB":
                 targetPool = bulletBossB;
                 break;
+            case "Explosion":
+                targetPool = explosion;
+                break;
+
         }
         return targetPool;
     }
