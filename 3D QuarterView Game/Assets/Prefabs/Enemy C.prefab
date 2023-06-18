@@ -375,12 +375,11 @@ MonoBehaviour:
   maxHealth: 200
   curHealth: 200
   score: 500
+  manager: {fileID: 0}
   target: {fileID: 0}
   meleeArea: {fileID: 0}
   bullet: {fileID: 2111460345958671812, guid: c499efe0ea258744688e50119f41f005, type: 3}
   coins:
-  - {fileID: 1820589886786615545, guid: 1189475939b87a641bc37502e322b705, type: 3}
-  - {fileID: 4718665042723023595, guid: 12e322457c997024db6df8beb4f1a506, type: 3}
   - {fileID: 1945938878083481789, guid: caa0f2ebf64abed4a9ce83011e7a0d5b, type: 3}
   isChase: 0
   isAttack: 0

@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent nav;
     public Animator anim;
 
+    bool isDamage;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -108,7 +110,7 @@ public class Enemy : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
                 meleeArea.enabled = true;
 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
                 meleeArea.enabled = false;
 
                 yield return new WaitForSeconds(1f);
@@ -119,7 +121,7 @@ public class Enemy : MonoBehaviour
                 rigid.AddForce(transform.forward * 20, ForceMode.Impulse);
                 meleeArea.enabled = true;
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(1f);
                 rigid.velocity = Vector3.zero;
                 meleeArea.enabled = false;
 
@@ -149,16 +151,18 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Melee")
+        if (other.tag == "Melee" && !isDead && !isDamage)
         {
+            isDamage = true;
             Weapon weapon = other.GetComponent<Weapon>();
             curHealth -= weapon.damage;
             Vector3 reactVec = transform.position - other.transform.position;
 
             StartCoroutine(OnDamage(reactVec, false));
         }
-        else if (other.tag == "Bullet")
+        else if (other.tag == "Bullet" && !isDead && !isDamage)
         {
+            isDamage = true;
             Bullet bullet = other.GetComponent<Bullet>();
             curHealth -= bullet.damage;
             Vector3 reactVec = transform.position - other.transform.position;
@@ -185,6 +189,9 @@ public class Enemy : MonoBehaviour
         {
             foreach (MeshRenderer mesh in meshs)
                 mesh.material.color = Color.white;
+
+            yield return new WaitForSeconds(0.1f);
+            isDamage = false;
         }
         else
         {
@@ -199,8 +206,17 @@ public class Enemy : MonoBehaviour
 
             Player player = target.GetComponent<Player>();
             player.score += score;
-            int ranCoin = Random.Range(0, 3);
-            Instantiate(coins[ranCoin], transform.position, Quaternion.identity);
+            if (enemyType == Type.D)
+            {
+                int ranCoin = Random.Range(0, 3);
+                Instantiate(coins[ranCoin], transform.position, Quaternion.identity);
+                Instantiate(coins[ranCoin], transform.position * 0.5f, Quaternion.identity);
+                Instantiate(coins[ranCoin], transform.position * 1f, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(coins[0], transform.position, Quaternion.identity);
+            }
 
 
             switch (enemyType)

@@ -226,9 +226,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 3
-  maxHealth: 100
-  curHealth: 100
+  maxHealth: 1000
+  curHealth: 1000
   score: 2000
+  manager: {fileID: 0}
   target: {fileID: 0}
   meleeArea: {fileID: 1824442878330491691}
   bullet: {fileID: 3322637936819130939, guid: 2cf4cd787bef44d409133803467fe4e3, type: 3}
